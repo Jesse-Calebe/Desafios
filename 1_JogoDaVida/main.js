@@ -25,9 +25,19 @@ function buildGrid() {
 }
 
 function cellClick(oEvent) {
-  let id = oEvent.currentTarget.id;
+  document.getElementById(oEvent.currentTarget.id).style.setProperty("background-color", "blue");
+}
 
-  document.getElementById(id).style.setProperty("background-color", "blue");
+function handlePlayButton() {
+  alert("handlePlayButton")
+}
+
+function handlePauseButton() {
+  alert("handlePauseButton")
+}
+
+function handleClearButton() {
+  alert("handleClearButton")
 }
 
 // Events

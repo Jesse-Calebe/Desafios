@@ -3,14 +3,13 @@
   width: 100%;
 }
 #descricao {
-  width: 50%;
+  width: 40%;
 }
-#container {
-  width: 50%;
+#container-jogo {
+  width: 60%;
 }
 #grid-container {
   display: flex;
-  border: 1px solid black;
 }
 
 .cell {
