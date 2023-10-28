@@ -1,3 +1,4 @@
+// Functions
 function buildGrid() {
   const container = document.getElementById("grid-container");
 
@@ -23,4 +24,6 @@ function buildGrid() {
   makeRows(20, 20);
 }
 
+
+// Events
 window.onload = buildGrid;
