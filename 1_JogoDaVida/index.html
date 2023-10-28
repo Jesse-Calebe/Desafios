@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Jogo da Vida</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+  </head>
+
+  <body>
+    <div id="container">
+        <div id="descricao">
+            <h1>Jogo da Vida</h1>
+            <p>O jogo da vida é um autômato celular desenvolvido pelo matemático britânico John Horton Conway em 1970. O jogo foi criado de modo a reproduzir, através de regras simples, as alterações e mudanças em grupos de seres vivos, tendo aplicações em diversas áreas da ciência.</p>
+            <p>As regras são simples e elegantes:</p>
+            <ol>
+                <li>Qualquer célula viva com menos de dois vizinhos vivos morre de solidão.</li>
+                <li>Qualquer célula viva com mais de três vizinhos vivos morre de superpopulação.</li>
+                <li>Qualquer célula com exatamente três vizinhos vivos se torna uma célula viva.</li>
+                <li>Qualquer célula com dois vizinhos vivos continua no mesmo estado para a próxima geração.</li>
+            </ol>
+            <button>Play</button>
+            <button>Pause</button>
+            <button>Clear</button>
+        </div>
+
+        <div id="grid-container"></div>
+    </div>
+  </body>
+</html>
