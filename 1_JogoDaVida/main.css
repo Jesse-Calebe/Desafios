@@ -1,6 +1,6 @@
 :root {
   --grid-cols: 1;
-  --grid-rows: 1;
+  --grid-cells: 1;
 }
 
 #container {
@@ -8,15 +8,19 @@
   width: 100%;
 }
 #descricao {
-  width: 25%;
+  width: 50%;
+}
+#container {
+  width: 50%;
 }
 #grid-container {
-  width: 75%;
   display: flex;
+  border: 1px solid black;
 }
 
-.col {
-  background-color: brown;
+.cell {
+  background-color: aliceblue;
+  border: 1px solid black;
   width: 30px;
   height: 30px;
   margin: 1px;
