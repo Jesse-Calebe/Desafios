@@ -1,4 +1,19 @@
+// Constants
+const iCols = 25;
+const iCells = 25;
+
+// Variables
+var oInterval;
+
 // Functions
+function handleOnLoad() {
+  buildGrid();
+
+  document.getElementById("play").addEventListener("click", handlePlayButton);
+  document.getElementById("pause").addEventListener("click", handlePauseButton);
+  document.getElementById("clear").addEventListener("click", handleClearButton);
+}
+
 function buildGrid() {
   const container = document.getElementById("grid-container");
 
@@ -21,16 +36,51 @@ function buildGrid() {
     }
   }
 
-  makeRows(20, 20);
+  makeRows(iCols, iCells);
 }
 
 function cellClick(oEvent) {
-  document
+  let currentColor = document
     .getElementById(oEvent.currentTarget.id)
-    .style.setProperty("background-color", "blue");
+    .style.getPropertyValue("background-color");
+
+  if (currentColor == "blue") {
+    document
+      .getElementById(oEvent.currentTarget.id)
+      .style.setProperty("background-color", "aliceblue");
+  } else {
+    document
+      .getElementById(oEvent.currentTarget.id)
+      .style.setProperty("background-color", "blue");
+  }
 }
 
-function handlePlayButton() {
+function handlePlayButton(oEvent) {
+  oInterval = setInterval(Play, 1000);
+}
+
+function handlePauseButton() {
+  console.log("Pause");
+  clearInterval(oInterval);
+}
+
+function handleClearButton() {
+  let oGrid = document.getElementById("grid-container");
+
+  for (col = 0; col < oGrid.childNodes.length; col++) {
+    for (cell = 0; cell < oGrid.childNodes[col].childNodes.length; cell++) {
+      let cellId = oGrid.childNodes[col].childNodes[cell].id;
+
+      document
+        .getElementById(cellId)
+        .style.setProperty("background-color", "aliceblue");
+    }
+  }
+}
+
+function Play() {
+  console.log("Play");
+
   let oGrid = document.getElementById("grid-container");
 
   for (col = 0; col < oGrid.childNodes.length; col++) {
@@ -47,13 +97,42 @@ function handlePlayButton() {
       let cimaVivo = vizinhoCima(coord);
       let baixoVivo = vizinhoBaixo(coord);
 
+      let quantVizinhos = 0;
+      if (esquerdaVivo) {
+        quantVizinhos += 1;
+      }
+
+      if (direitaVivo) {
+        quantVizinhos += 1;
+      }
+
+      if (cimaVivo) {
+        quantVizinhos += 1;
+      }
+
+      if (baixoVivo) {
+        quantVizinhos += 1;
+      }
+
       if (cellColor === "green" || cellColor === "blue") {
-        if (!esquerdaVivo && !direitaVivo && !cimaVivo && !baixoVivo) {
+        if (quantVizinhos < 2) {
           document
             .getElementById(cellId)
             .style.setProperty("background-color", "aliceblue");
         }
-      }
+
+        if (quantVizinhos > 3) {
+          document
+            .getElementById(cellId)
+            .style.setProperty("background-color", "aliceblue");
+        }
+      } else {
+        if (quantVizinhos === 3) {
+          document
+            .getElementById(cellId)
+            .style.setProperty("background-color", "green");
+        };
+      };
     }
   }
 }
@@ -65,8 +144,8 @@ function vizinhoEsquerda(coord) {
     return false;
   }
 
-  coord[0] = parseInt(coord[0])
-  coord[1] = parseInt(coord[1])
+  coord[0] = parseInt(coord[0]);
+  coord[1] = parseInt(coord[1]);
 
   let color =
     oGrid.childNodes[coord[0] - 1].childNodes[coord[1]].style.getPropertyValue(
@@ -83,12 +162,12 @@ function vizinhoEsquerda(coord) {
 function vizinhoDireita(coord) {
   let oGrid = document.getElementById("grid-container");
 
-  if (coord[0] == "19") {
+  if (coord[0] == iCols - 1) {
     return false;
   }
 
-  coord[0] = parseInt(coord[0])
-  coord[1] = parseInt(coord[1])
+  coord[0] = parseInt(coord[0]);
+  coord[1] = parseInt(coord[1]);
 
   let color =
     oGrid.childNodes[coord[0] + 1].childNodes[coord[1]].style.getPropertyValue(
@@ -109,8 +188,8 @@ function vizinhoCima(coord) {
     return false;
   }
 
-  coord[0] = parseInt(coord[0])
-  coord[1] = parseInt(coord[1])
+  coord[0] = parseInt(coord[0]);
+  coord[1] = parseInt(coord[1]);
 
   let color =
     oGrid.childNodes[coord[0]].childNodes[coord[1] - 1].style.getPropertyValue(
@@ -127,12 +206,12 @@ function vizinhoCima(coord) {
 function vizinhoBaixo(coord) {
   let oGrid = document.getElementById("grid-container");
 
-  if (coord[1] == "19") {
+  if (coord[1] == iCells - 1) {
     return false;
   }
 
-  coord[0] = parseInt(coord[0])
-  coord[1] = parseInt(coord[1])
+  coord[0] = parseInt(coord[0]);
+  coord[1] = parseInt(coord[1]);
 
   let color =
     oGrid.childNodes[coord[0]].childNodes[coord[1] + 1].style.getPropertyValue(
@@ -146,13 +225,5 @@ function vizinhoBaixo(coord) {
   }
 }
 
-function handlePauseButton() {
-  alert("handlePauseButton");
-}
-
-function handleClearButton() {
-  alert("handleClearButton");
-}
-
 // Events
-window.onload = buildGrid;
+window.onload = handleOnLoad;
