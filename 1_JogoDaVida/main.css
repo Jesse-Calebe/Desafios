@@ -8,7 +8,8 @@
 #container-jogo {
   width: 60%;
 }
-#grid-container {
+
+.row {
   display: flex;
 }
 
@@ -22,4 +23,12 @@
 
 div.controles button {
   width: 60px;
+}
+
+h1 {
+  text-align: center;
+}
+
+#descricao {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
