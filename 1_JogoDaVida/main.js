@@ -52,7 +52,7 @@ function cellClick(oEvent) {
 }
 
 function handlePlayButton(oEvent) {
-  oInterval = setInterval(Play, 1000);
+  oInterval = setInterval(play, 1000);
 }
 
 function handlePauseButton() {
@@ -70,10 +70,40 @@ function handleClearButton() {
   }
 }
 
-function Play() {
+function play() {
   console.log("Play");
 
   let oGrid = document.getElementById("grid-container");
+
+  for (row = 0; row < oGrid.childNodes.length; row++) {
+    for (cell = 0; cell < oGrid.childNodes[row].childNodes.length; cell++) {
+      let sCurrentId = oGrid.childNodes[row].childNodes[cell].id;
+
+      let iQuantVizinhos = verificaVizinhos(sCurrentId);
+
+      if (estaViva(sCurrentId)) {
+        if (iQuantVizinhos < 2 || iQuantVizinhos > 3) {
+          setColorFromId(sCurrentId, "aliceblue");
+        }
+      } else {
+        if (iQuantVizinhos === 3) {
+          setColorFromId(sCurrentId, "blue");
+        }
+      }
+    }
+  }
+}
+
+function verificaVizinhos(sId) {
+  return 0;
+}
+
+function estaViva(sId) {
+  if (getColorFromId(sId) === "blue") {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 // Events
