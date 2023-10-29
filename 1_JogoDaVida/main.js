@@ -1,6 +1,6 @@
 // Constants
-const iCols = 25;
-const iCells = 25;
+const iCols = 21;
+const iCells = 21;
 
 // Variables
 var oInterval;
@@ -8,10 +8,6 @@ var oInterval;
 // Functions
 function handleOnLoad() {
   buildGrid();
-
-  document.getElementById("play").addEventListener("click", handlePlayButton);
-  document.getElementById("pause").addEventListener("click", handlePauseButton);
-  document.getElementById("clear").addEventListener("click", handleClearButton);
 }
 
 function buildGrid() {
@@ -131,8 +127,8 @@ function Play() {
           document
             .getElementById(cellId)
             .style.setProperty("background-color", "green");
-        };
-      };
+        }
+      }
     }
   }
 }

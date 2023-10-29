@@ -19,3 +19,7 @@
   height: 30px;
   margin: 1px;
 }
+
+div.controles button {
+  width: 60px;
+}
